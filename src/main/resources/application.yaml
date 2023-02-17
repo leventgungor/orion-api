@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  error:
+    path: error
+    include-stacktrace: always
+  servlet:
+    context-path: /api
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  data:
+    mongodb:
+      user: admin
+      password: admin
+      uri: mongodb://localhost:27017/orion
+

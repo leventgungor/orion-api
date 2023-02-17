@@ -1,0 +1,44 @@
+name: build_push_deploy
+on:
+  push:
+    branches:
+      - test
+env:
+  REPO_NAME: ${{vars.REPO_NAME}}
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+jobs:
+  build_and_push_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Login Digital Ocean Registry
+        run: |
+          docker login registry.digitalocean.com -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag $REPO_NAME:${{ steps.date.outputs.date }}
+      - name: Push image to the Digital Ocean Container Registry
+        run: docker push $REPO_NAME:${{ steps.date.outputs.date }}
+    outputs:
+      date: ${{ steps.date.outputs.date }}
+
+  deploy_to_kubernetes:
+    name: deploy to kubernetes
+    needs: build_and_push_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: github action
+        uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
+          kubectl-version: v1.22.0
+      - name: cat kube config
+        run: cat /home/runner/.kube/config
+      - name: show pods
+        run: kubectl get pods -n ingress-nginx
+      - name: set deployment image
+        run: kubectl set image deployment/orion-api orion-api=$REPO_NAME:${{ needs.build_and_push_image.outputs.date }}
