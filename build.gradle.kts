@@ -17,6 +17,7 @@ repositories {
 extra["springCloudVersion"] = "2022.0.1"
 
 dependencies {
+	// SPRING
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -25,11 +26,21 @@ dependencies {
 	//implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	//implementation("org.springframework.cloud:spring-cloud-starter-config")
-	implementation("org.modelmapper:modelmapper:3.1.0")
-	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	
+	// OPEN-AI
+	implementation("com.theokanning.openai-gpt3-java:client:0.10.0")
+	implementation("com.theokanning.openai-gpt3-java:api:0.10.0")
+	implementation("com.theokanning.openai-gpt3-java:service:0.10.0")
+
+	// LOMBOK
+	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	// UTILS
+	implementation("org.modelmapper:modelmapper:3.1.0")
 }
+
 
 tasks.test {
 	isEnabled = false

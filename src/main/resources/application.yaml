@@ -15,3 +15,6 @@ spring:
       user: orion
       password: 0Xj5Cc7hM3189ye6
       uri: mongodb+srv://db-mongodb-lon1-43755-11bb8053.mongo.ondigitalocean.com/orion
+
+openai:
+  token: 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
