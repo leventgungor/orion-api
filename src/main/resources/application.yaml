@@ -14,4 +14,4 @@ spring:
     mongodb:
       user: orion
       password: 0Xj5Cc7hM3189ye6
-
+      uri: mongodb+srv://db-mongodb-lon1-43755-11bb8053.mongo.ondigitalocean.com/orion
