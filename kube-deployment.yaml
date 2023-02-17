@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: orion-api
+  name: orion-api
+  namespace: ingress-nginx
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      k8s-app: orion-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        k8s-app: orion-api
+      name: orion-api
+    spec:
+      containers:
+      - image: registry.digitalocean.com/expanse/orion-api:2023-02-17-19-35-43
+        imagePullPolicy: IfNotPresent
+        name: orion-api

@@ -20,7 +20,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
  
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString("mongodb://orion-api-mongo-1:27017/orion");
+        ConnectionString connectionString = new ConnectionString("mongodb://db-mongodb-lon1-43755-11bb8053.mongo.ondigitalocean.com/orion");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
             .applyConnectionString(connectionString)
             .build();

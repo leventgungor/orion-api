@@ -12,6 +12,6 @@ spring:
       enabled: false
   data:
     mongodb:
-      user: admin
-      password: admin
+      user: orion
+      password: 0Xj5Cc7hM3189ye6
 
