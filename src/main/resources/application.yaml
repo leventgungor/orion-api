@@ -14,5 +14,4 @@ spring:
     mongodb:
       user: admin
       password: admin
-      uri: mongodb://localhost:27017/orion
 
