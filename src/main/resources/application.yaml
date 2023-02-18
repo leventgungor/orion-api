@@ -5,6 +5,9 @@ server:
     include-stacktrace: always
   servlet:
     context-path: /api
+    encoding:
+      enabled: true
+      charset: UTF-8
 
 spring:
   cloud:
@@ -14,7 +17,9 @@ spring:
     mongodb:
       user: orion
       password: 0Xj5Cc7hM3189ye6
-      uri: mongodb+srv://db-mongodb-lon1-43755-11bb8053.mongo.ondigitalocean.com/orion
+      uri: {$MONGO_URI:mongodb+srv://db-mongodb-lon1-43755-11bb8053.mongo.ondigitalocean.com/orion}
+  application:
+    name: orion-api
 
 openai:
   token: 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

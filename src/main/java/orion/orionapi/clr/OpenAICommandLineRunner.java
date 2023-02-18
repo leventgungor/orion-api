@@ -16,6 +16,6 @@ public class OpenAICommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("Enter question.");
         Scanner scanner = new Scanner(System.in);
-        openAIService.sendRequest(scanner.nextLine());
+        openAIService.complete(scanner.nextLine());
     }
 }

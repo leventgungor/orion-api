@@ -24,8 +24,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb:3.0.2")
 	//implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 	//implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
 	//implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	
 	// OPEN-AI
@@ -52,6 +52,10 @@ tasks.jar {
 
 tasks.bootJar {
 	archiveFileName.set("app.jar")
+}
+
+tasks.bootRun {
+	standardInput = System.`in`
 }
 
 dependencyManagement {
