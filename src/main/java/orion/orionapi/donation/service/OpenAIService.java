@@ -11,10 +11,10 @@ public class OpenAIService {
     @Value("${openai.token}")
     private String token;
 
-    public void sendRequest(String question){
+    public void complete(String text){
         OpenAiService service = new OpenAiService(token);
         CompletionRequest completionRequest = CompletionRequest.builder()
-                .prompt(question)
+                .prompt(text)
                 .model("ada")
                 .echo(true)
                 .build();

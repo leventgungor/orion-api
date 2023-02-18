@@ -1,4 +1,4 @@
-FROM gradle:jdk17-jammy
+FROM gradle:jdk17-alpine
 COPY . .
 RUN gradle clean bootJar
 WORKDIR ./build/libs
